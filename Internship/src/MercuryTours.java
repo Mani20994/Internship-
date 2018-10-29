@@ -32,7 +32,7 @@ public class MercuryTours {
 		public void Start()throws InterruptedException, IOException {
 		
 		//Register
-		driver.findElement(By.xpath("html/body/div/table/tbody/tr/td[2]/table/tbody/tr[2]/td/table/tbody/tr/td[2]/a")).click();
+		driver.findElement(By.xpath("html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[2]/td/table/tbody/tr/td[2]/a")).click();
 		
 		// First Name
 		driver.findElement(By.xpath("//input[@name='firstName']")).sendKeys("Aish");
@@ -69,11 +69,12 @@ public class MercuryTours {
 		driver.findElement(By.xpath("//input[@name='postalCode']")).sendKeys("98000");	
 		
 		//Country
-		driver.findElement(By.xpath("html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[12]/td[2]/select")).click();	
-		driver.findElement(By.xpath("html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[12]/td[2]/select/option[232]")).click();
+			
+		Select dropdown = new Select(driver.findElement(By.xpath("//select[@name='country']")));
+		dropdown.selectByIndex(4);
 		
 		//Name
-		driver.findElement(By.xpath("//input[@name='email']")).sendKeys("Aish");	
+		driver.findElement(By.xpath("//*[@id='email']")).sendKeys("Aish");	
 		
 		//Password	
 		driver.findElement(By.xpath("//input[@name='password']")).sendKeys("confirm");	
@@ -93,120 +94,124 @@ public class MercuryTours {
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
 		// One way click 
-		driver.findElement(By.xpath("html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[2]/td[2]/b/font/input[2]")).sendKeys("one way");
+		driver.findElement(By.xpath("//input[@value='oneway']")).sendKeys("one way");
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
 		//Passenger drop down by index element
 		
-		Select dropdown = new Select(driver.findElement(By.xpath("html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[3]/td[2]/b/select")));
+		Select dropdown = new Select(driver.findElement(By.xpath("//select[@name='passCount']")));
 		dropdown.selectByIndex(1);
-		 //Drop down 
-		 driver.findElement(By.xpath("html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[4]/td[1]/font/b")).click();
-		 driver.findElement(By.xpath("html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[4]/td[2]/select")).sendKeys("Newyork");
-			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		 //Departing from
+		Select dropdown1 = new Select(driver.findElement(By.xpath("//select[@name='fromPort']")));
+		dropdown1.selectByIndex(3);
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
 		//Drop down
-		 driver.findElement(By.xpath("html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[5]/td[2]/select")).sendKeys("September");
+		
+		 driver.findElement(By.xpath("//select[@name='fromMonth']")).sendKeys("September");
 		driver.findElement(By.xpath("html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[5]/td[2]/select[2]")).sendKeys("9");
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 			 
-		 //Drop down
-		driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[6]/td[1]/font[1]/b[1]")).click();
-	    driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[6]/td[2]/select[1]")).sendKeys("Paris");
+		 //Arriving in drop down
+		Select dropdown11 = new Select(driver.findElement(By.xpath("//select[@name='toPort']")));
+		dropdown11.selectByIndex(2);
+		
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 			 
 		//Return drop down
-		 driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[7]/td[2]/select[1]")).sendKeys("September");
-		 driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[7]/td[2]/select[2]")).sendKeys("28");
+		Select dropdown111 = new Select(driver.findElement(By.xpath("//select[@name='toMonth']")));
+		dropdown111.selectByIndex(4);
+		Select dropdown1111 = new Select(driver.findElement(By.xpath("//select[@name='toDay']")));
+		dropdown1111.selectByIndex(6);
+		 
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 			 
 		 //Service class
-		 driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[10]/td[1]/font[1]/b[1]")).click();  
-		 driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[10]/td[2]/select[1]")).sendKeys("Pangea Airlines");
-		 driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[14]/td[1]/input[1]")).click(); 
+		 driver.findElement(By.xpath("//input[@value='Business']")).click();  
+		 driver.findElement(By.xpath("//select[@name='airline']")).click();
+		 driver.findElement(By.xpath("")).sendKeys("Pangea Airlines"); 
 		 driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
 		// Click
-	     driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[5]/td[1]/input[1]" )).click();
+	     driver.findElement(By.xpath("//input[@name='findFlights']" )).click();
 			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
  	
 		//Click
-		 driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[2]/tbody[1]/tr[5]/td[1]/input[1]" )).click(); 
+		 driver.findElement(By.xpath("//input[@value='Blue Skies Airlines$361$271$7:10']" )).click(); 
 			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
  		
 		 //Click
-		 driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/p[1]/input[1]")).click(); 
+		 driver.findElement(By.xpath("//input[@value='Pangea Airlines$632$282$16:37']")).click(); 
+			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+			//Click to Continue
+			driver.findElement(By.xpath("//input[@name='reserveFlights']")).click(); 
 			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
+
 		// Passenger first name
-	    driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[2]/td[1]/input[1]")).sendKeys("Priya");
+	    driver.findElement(By.xpath("//input[@name='passFirst0']")).sendKeys("Priya");
 			
 		//Passenger last name
-		 driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[2]/td[2]/input[1]")).sendKeys("Patil");
+		 driver.findElement(By.xpath("//input[@name='passLast0']")).sendKeys("Patil");
 			
-		 //Drop down
-		 driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[2]/td[3]/select[1]")).sendKeys("Hindu");
+		 //Drop Down
+		 Select dropdown11111 = new Select(driver.findElement(By.xpath("//select[@name='pass.0.meal']")));
+			dropdown11111.selectByIndex(3);
+		 
 		 driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		
-		 // Passenger second name
-		driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[5]/td[1]/table[1]/tbody[1]/tr[2]/td[1]/input[1]")).sendKeys("Pooja");
+		 // Credit Card
+		driver.findElement(By.xpath("//select[@name='creditCard']")).click();
 			
-		//Passenger last name
-		driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[5]/td[1]/table[1]/tbody[1]/tr[2]/td[2]/input[1]")).sendKeys("Patil");
-			
-		 //Drop down
-		 driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[5]/td[1]/table[1]/tbody[1]/tr[1]/td[3]/font[1]")).click();
-        driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[5]/td[1]/table[1]/tbody[1]/tr[1]/td[3]/font[1]")).click();
-		driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[5]/td[1]/table[1]/tbody[1]/tr[2]/td[3]/select[1]")).sendKeys("Hindu");
+		//Drop Down
+		driver.findElement(By.xpath("html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[6]/td/table/tbody/tr[2]/td[1]/select/option[2]")).sendKeys("MasterCard");
+		//Number
+		 driver.findElement(By.xpath("//input[@name='creditnumber']")).sendKeys("1234567891234567");
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-
-		  //Number
-		 driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[7]/td[1]/table[1]/tbody[1]/tr[2]/td[2]/input[1]")).sendKeys("1234567891234567");
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		
 			 
-		//Expiration drop down
-		driver.findElement(By.xpath("html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[7]/td/table/tbody/tr[2]/td[3]/select[1]")).click();
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-		driver.findElement(By.xpath("html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[7]/td/table/tbody/tr[2]/td[3]/select[1]/option[4]")).click();
-		driver.findElement(By.xpath("html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[7]/td/table/tbody/tr[2]/td[3]/select[2]")).click();
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-		driver.findElement(By.xpath("html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[7]/td/table/tbody/tr[2]/td[3]/select[2]/option[4]")).click();
+		//Expiration drop down by index value
 
+		Select dropdown111111 = new Select(driver.findElement(By.xpath("//select[@name='cc_exp_dt_mn']")));
+		dropdown111111.selectByIndex(1);
+		Select dropdown1111111 = new Select(driver.findElement(By.xpath("//select[@name='cc_exp_dt_yr']")));
+		dropdown1111111.selectByIndex(2);
+		
 		 //First
-		driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[8]/td[1]/table[1]/tbody[1]/tr[2]/td[1]/input[1]")).sendKeys("Aish");
+		driver.findElement(By.xpath("//input[@name='cc_frst_name']")).sendKeys("Aish");
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
 		//Middle
-		driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[8]/td[1]/table[1]/tbody[1]/tr[2]/td[2]/input[1]")).sendKeys("Raj");
+		driver.findElement(By.xpath("//input[@name='cc_mid_name']")).sendKeys("Raj");
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
 		//Last name
-		 driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[8]/td[1]/table[1]/tbody[1]/tr[2]/td[3]/input[1]")).sendKeys("kulkarni");
+		 driver.findElement(By.xpath("//input[@name='cc_last_name']")).sendKeys("kulkarni");
 			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
 		 //Click Ticket less travel
-		driver.findElement(By.xpath("//input[@type='checkbox']")).click();
+		driver.findElement(By.xpath("//tbody//tr[8]//td[2]//input[1]")).click();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
 		 
 		 //Address
-		 driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[10]/td[2]/input[1]")).sendKeys("Rajajinagar");
+		 driver.findElement(By.xpath("//input[@name='billAddress1']")).sendKeys("Rajajinagar");
 			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
 		 //Click 
-		 driver.findElement(By.xpath("html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[15]/td[2]/input")).click();
+		 driver.findElement(By.xpath("//input[@name='billAddress2']")).click();
 			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
 		// Delivery address
-	    driver.findElement(By.xpath("html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[17]/td[2]/input")).sendKeys("Jaynagar");
+	    driver.findElement(By.xpath("//input[@name='delAddress1']")).sendKeys("Jaynagar");
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
 		//Secure purchase
-	   driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[5]/td[1]/form[1]/table[1]/tbody[1]/tr[24]/td[1]/input[1]")).click();
+	   driver.findElement(By.xpath("//input[@type='image']")).click();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
   
 		//Log out
-		driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[4]/td[1]/table[1]/tbody[1]/tr[1]/td[2]/table[1]/tbody[1]/tr[7]/td[1]/table[1]/tbody[1]/tr[1]/td[3]/a[1]/img[1]")).click();
+		driver.findElement(By.xpath("//img[@src='/images/forms/Logout.gif']")).click();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
 		//Screenshot
@@ -218,14 +223,9 @@ public class MercuryTours {
 		driver.close();
 		}
 
-	
-
-
-		@AfterTest
-
-		public void quit() {
-		 
-		 driver.quit();
+	@AfterTest
+     public void quit() {
+     driver.quit();
 	
 		}
 }
