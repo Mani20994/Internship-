@@ -15,206 +15,205 @@ import org.testng.annotations.Test;
 public class MercuryTours {
 	WebDriver driver= new ChromeDriver();
 
-		//URL
-		@BeforeTest
-	 public void Test() throws IOException, InterruptedException {
+//URL
+	@BeforeTest
+	        public void Test() throws IOException, InterruptedException {
 			System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
-		
-		driver.get("http://newtours.demoaut.com/");
-		Thread.sleep(5000);
-		
-		
-		//Title
-		String actualtitle=driver.getTitle();
-		System.out.println("The title of the page is:"+actualtitle);
+	         driver.get("http://newtours.demoaut.com/");
+		     Thread.sleep(5000);
+//Title
+		    String actualtitle=driver.getTitle();
+		    System.out.println("The title of the page is:"+actualtitle);
 }
-		@Test(priority=0)
-		public void Start()throws InterruptedException, IOException {
+	@Test(priority=0)
+		   public void Start()throws InterruptedException, IOException {
 		
-		//Register
-		driver.findElement(By.xpath("html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[2]/td/table/tbody/tr/td[2]/a")).click();
+//Register
+		  driver.findElement(By.xpath("html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[2]/td/table/tbody/tr/td[2]/a")).click();
 		
-		// First Name
-		driver.findElement(By.xpath("//input[@name='firstName']")).sendKeys("Aish");
+// First Name
+		  
+		 driver.findElement(By.xpath("//input[@name='firstName']")).sendKeys("Aish");
 		
-		//Last name
+//Last name
 		driver.findElement(By.xpath("//input[@name='lastName']")).sendKeys("kulkarni");
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		
-		//Phone#
+//Phone number
 		driver.findElement(By.xpath("//input[@name='phone']")).sendKeys("9886261455");
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-		//Email
+//Email
 		driver.findElement(By.xpath(".//*[@id='userName']")).sendKeys("9886261455");
 		
-		//Scroll down
+//Scroll down
 		JavascriptExecutor js=(JavascriptExecutor)driver;
 		js.executeScript("window.scrollBy(0,2500)");
 		System.out.println("scrolled Down");
 		Thread.sleep(5000);
 		
-		//Address
+//Address
 		driver.findElement(By.xpath("//input[@name='address1']")).sendKeys("2cross  ");
 		driver.findElement(By.xpath("//input[@name='address2']")).sendKeys("Basveshwar nagar");
 		
-		//City
+//City
 		driver.findElement(By.xpath("//input[@name='city']")).sendKeys("Gulbarga");
-		
-		//State
+
+//State
 		driver.findElement(By.xpath("//input[@name='state']")).sendKeys("Karnataka");
 		
-		//Postal code
+//Postal code
 		driver.findElement(By.xpath("//input[@name='postalCode']")).sendKeys("98000");	
 		
-		//Country
-			
+//Country
+		
 		Select dropdown = new Select(driver.findElement(By.xpath("//select[@name='country']")));
 		dropdown.selectByIndex(4);
 		
-		//Name
+//Name
 		driver.findElement(By.xpath("//*[@id='email']")).sendKeys("Aish");	
 		
-		//Password	
+//Password	
 		driver.findElement(By.xpath("//input[@name='password']")).sendKeys("confirm");	
 		
-		//Confirm password
+//Confirm password
 		driver.findElement(By.xpath("//input[@name='password']")).sendKeys("confirm");	
 		
-		//Submit
+//Submit
 		driver.findElement(By.xpath("//input[@name='register']")).click();	
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		}
-		@Test(priority = 1)
-
-		public void Flights()throws InterruptedException, IOException {
-		//Click on Flights
+	@Test(priority = 1)
+        public void Flights()throws InterruptedException, IOException {
+		
+//Click on Flights
 		driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[2]/td[2]/a[1]")).click(); 
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-		// One way click 
+// One way click 
 		driver.findElement(By.xpath("//input[@value='oneway']")).sendKeys("one way");
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-		//Passenger drop down by index element
-		
+//Passenger drop down by index element
 		Select dropdown = new Select(driver.findElement(By.xpath("//select[@name='passCount']")));
 		dropdown.selectByIndex(1);
-		 //Departing from drop down
+		
+//Departing from drop down
 		Select dropdown1 = new Select(driver.findElement(By.xpath("//select[@name='fromPort']")));
 		dropdown1.selectByIndex(3);
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-		// departing date Drop down
+// departing date Drop down
 		
 		 driver.findElement(By.xpath("//select[@name='fromMonth']")).sendKeys("September");
 		driver.findElement(By.xpath("html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[5]/td[2]/select[2]")).sendKeys("9");
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 			 
-		 //Arriving in drop down
+//Arriving in drop down
 		Select dropdown11 = new Select(driver.findElement(By.xpath("//select[@name='toPort']")));
 		dropdown11.selectByIndex(2);
-		
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 			 
-		//Return date drop down
+//Return date drop down
 		Select dropdown111 = new Select(driver.findElement(By.xpath("//select[@name='toMonth']")));
 		dropdown111.selectByIndex(4);
 		Select dropdown1111 = new Select(driver.findElement(By.xpath("//select[@name='toDay']")));
 		dropdown1111.selectByIndex(6);
-		 
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 			 
-		 //Service class (Radio Buttons)
+//Service class (Radio Buttons)
 		 driver.findElement(By.xpath("//input[@value='Business']")).click();  
 		 driver.findElement(By.xpath("//select[@name='airline']")).click();
-		 //Airline selection
+		 
+//Airline selection
 		 Select dropdown11111 = new Select(driver.findElement(By.xpath("//select[@name='airline']")));
-			dropdown11111.selectByIndex(6);
-			 driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		dropdown11111.selectByIndex(6);
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-		// Click to Continue page
+// Click to Continue page
 	     driver.findElement(By.xpath("//input[@name='findFlights']" )).click();
-			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
  	
-		//Click to select depart flight name
-		 driver.findElement(By.xpath("//input[@value='Blue Skies Airlines$361$271$7:10']" )).click(); 
-			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+//Click to select depart flight name
+		
+		driver.findElement(By.xpath("//input[@value='Blue Skies Airlines$361$271$7:10']" )).click(); 
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
  		
-		 //Click to select return flight name
+ //Click to select return flight name
 		 driver.findElement(By.xpath("//input[@value='Pangea Airlines$632$282$16:37']")).click(); 
 			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-			//Click to Continue next page
+			
+//Click to Continue next page
 			driver.findElement(By.xpath("//input[@name='reserveFlights']")).click(); 
 			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 			
-         // Passenger first name
+ // Passenger first name
 	    driver.findElement(By.xpath("//input[@name='passFirst0']")).sendKeys("Priya");
 			
-		//Passenger last name
+//Passenger last name
 		 driver.findElement(By.xpath("//input[@name='passLast0']")).sendKeys("Patil");
 			
-		 // Meal Drop Down
+ // Meal Drop Down
 		 Select dropdown111111 = new Select(driver.findElement(By.xpath("//select[@name='pass.0.meal']")));
-			dropdown111111.selectByIndex(3);
+		dropdown111111.selectByIndex(3);
 		 
 		 driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		
-		 // Credit Card 
+ // Credit Card 
 		driver.findElement(By.xpath("//select[@name='creditCard']")).click();
 			
-		// Credit Card type Drop Down
+// Credit Card type Drop Down
 		driver.findElement(By.xpath("html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[5]/td/form/table/tbody/tr[6]/td/table/tbody/tr[2]/td[1]/select/option[2]")).sendKeys("MasterCard");
-		//Number of credit card
+		
+//Number of credit card
 		 driver.findElement(By.xpath("//input[@name='creditnumber']")).sendKeys("1234567891234567");
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		
-			 
-		//Expiration drop down by index value
+//Expiration drop down by index value
 
 		Select dropdown1111111 = new Select(driver.findElement(By.xpath("//select[@name='cc_exp_dt_mn']")));
 		dropdown1111111.selectByIndex(1);
 		Select dropdown11111111 = new Select(driver.findElement(By.xpath("//select[@name='cc_exp_dt_yr']")));
 		dropdown11111111.selectByIndex(2);
 		
-		 //First name of passengers
+//First name of passengers
 		driver.findElement(By.xpath("//input[@name='cc_frst_name']")).sendKeys("Aish");
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-		//Middle name passengers
+//Middle name passengers
 		driver.findElement(By.xpath("//input[@name='cc_mid_name']")).sendKeys("Raj");
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-		//Last name passengers
+//Last name passengers
 		 driver.findElement(By.xpath("//input[@name='cc_last_name']")).sendKeys("kulkarni");
 			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-
-		 //Click Ticket less travel
+		 
+//Click Ticket less travel
 		driver.findElement(By.xpath("//tbody//tr[8]//td[2]//input[1]")).click();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
 		 
-		 // Billing Address
+ // Billing Address
 		 driver.findElement(By.xpath("//input[@name='billAddress1']")).sendKeys("Rajajinagar");
 			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-		 //Click same as billing address
+//Click same as billing address
 		 driver.findElement(By.xpath("//input[@name='billAddress2']")).click();
 			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-		// Delivery address
+// Delivery address
 	    driver.findElement(By.xpath("//input[@name='delAddress1']")).sendKeys("Jaynagar");
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-		// click on Secure purchase to go next page 
+// click on Secure purchase to go next page 
 	   driver.findElement(By.xpath("//input[@type='image']")).click();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
   
-		// click on Log out button
+// click on Log out button
 		driver.findElement(By.xpath("//img[@src='/images/forms/Logout.gif']")).click();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-		//Screenshot
+//Screenshot
 		TakesScreenshot ts=(TakesScreenshot)driver;
 		 File file=ts.getScreenshotAs(OutputType.FILE);
 		org.apache.commons.io.FileUtils.copyFile(file, new File("D:\\screenb.jpeg"));
@@ -223,9 +222,8 @@ public class MercuryTours {
 		driver.close();
 		}
 
-	@AfterTest
+ @AfterTest
      public void quit() {
      driver.quit();
-	
-		}
+	}
 }
