@@ -28,8 +28,8 @@ public class MercuryTours {
 	@Test(priority=0)
 		   public void Start()throws InterruptedException, IOException {
 		
-//Register
-		  driver.findElement(By.xpath("html/body/div[1]/table/tbody/tr/td[2]/table/tbody/tr[2]/td/table/tbody/tr/td[2]/a")).click();
+//Register(CSS locators)
+		  driver.findElement(By.cssSelector(".mouseOver>a")).click();
 		
 // First Name
 		  
@@ -83,22 +83,23 @@ public class MercuryTours {
 		driver.findElement(By.xpath("//input[@name='register']")).click();	
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		}
+	
 	@Test(priority = 1)
         public void Flights()throws InterruptedException, IOException {
 		
-//Click on Flights
-		driver.findElement(By.xpath("/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[2]/td[2]/a[1]")).click(); 
+//Click on Flights(CSS Locators)
+		driver.findElement(By.cssSelector(".mouseOver>td>a")).click(); 
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-// One way click 
-		driver.findElement(By.xpath("//input[@value='oneway']")).sendKeys("one way");
+// One way click (CSS Selectors)
+		driver.findElement(By.cssSelector("tr:nth-child(2) td:nth-child(2) b:nth-child(1) font:nth-child(1) > input:nth-child(2)")).sendKeys("one way");
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
 //Passenger drop down by index element
 		Select dropdown = new Select(driver.findElement(By.xpath("//select[@name='passCount']")));
 		dropdown.selectByIndex(1);
 		
-//Departing from drop down
+//Departing from drop down by index value
 		Select dropdown1 = new Select(driver.findElement(By.xpath("//select[@name='fromPort']")));
 		dropdown1.selectByIndex(3);
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
@@ -130,21 +131,21 @@ public class MercuryTours {
 		dropdown11111.selectByIndex(6);
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-// Click to Continue page
-	     driver.findElement(By.xpath("//input[@name='findFlights']" )).click();
+// Click to Continue page(By CSS Selectors )
+	     driver.findElement(By.cssSelector("table:nth-child(1) tbody:nth-child(1) tr:nth-child(14) td:nth-child(1) > input:nth-child(1)" )).click();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
  	
-//Click to select depart flight name
+//Click to select depart flight name(By CSS Selectors)
 		
-		driver.findElement(By.xpath("//input[@value='Blue Skies Airlines$361$271$7:10']" )).click(); 
+		driver.findElement(By.cssSelector("table:nth-child(9) tbody:nth-child(1) tr:nth-child(5) td.frame_action_xrows > input:nth-child(1)" )).click(); 
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
  		
- //Click to select return flight name
-		 driver.findElement(By.xpath("//input[@value='Pangea Airlines$632$282$16:37']")).click(); 
+ //Click to select return flight name(CSS Selectors)
+		 driver.findElement(By.cssSelector("table:nth-child(10) tbody:nth-child(1) tr:nth-child(5) td.frame_action_xrows > input:nth-child(1)")).click(); 
 			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 			
-//Click to Continue next page
-			driver.findElement(By.xpath("//input[@name='reserveFlights']")).click(); 
+//Click to Continue next page(CSS Selectors)
+			driver.findElement(By.cssSelector("tr:nth-child(5) td:nth-child(1) form:nth-child(1) p:nth-child(11) > input:nth-child(1)")).click(); 
 			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 			
  // Passenger first name
@@ -205,12 +206,12 @@ public class MercuryTours {
 	    driver.findElement(By.xpath("//input[@name='delAddress1']")).sendKeys("Jaynagar");
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-// click on Secure purchase to go next page 
-	   driver.findElement(By.xpath("//input[@type='image']")).click();
+// click on Secure purchase to go next page (CSS Selector)
+	   driver.findElement(By.cssSelector("table:nth-child(20) tbody:nth-child(1) tr:nth-child(24) td:nth-child(1) > input:nth-child(1)")).click();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
   
-// click on Log out button
-		driver.findElement(By.xpath("//img[@src='/images/forms/Logout.gif']")).click();
+// click on Log out button(CSS Selector)
+		driver.findElement(By.xpath("tbody:nth-child(1) tr:nth-child(1) td:nth-child(3) a:nth-child(1) > img:nth-child(1)")).click();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
 //Screenshot
